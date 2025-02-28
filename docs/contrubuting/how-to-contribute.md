@@ -1,7 +1,5 @@
 # How to Contribute to Tlama Core 🌟
 
-Hola
-
 Thank you for your interest in contributing to **Tlama Core**! Your contributions help improve the project and make it more useful for everyone. This project follows **Git Flow**, so please follow these steps when contributing.  
 
 ## 🛠️ **Git Flow Overview**  

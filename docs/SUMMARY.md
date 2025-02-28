@@ -9,9 +9,9 @@
 
 ## Contributing
 
-* [How to contribute](contributing/how-to-contribute.md)
-* [Style guide](contributing/style-guide.md)
-* [Pull request template](contributing/pull-request-template.md)
+* [How to contribute](contrubuting/how-to-contribute.md)
+* [Style guide](contrubuting/style-guide.md)
+* [Pull request template](contrubuting/pull-request-template.md)
 
 
 ## Basics
