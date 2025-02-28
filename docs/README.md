@@ -20,6 +20,8 @@ layout:
 
 # Welcome to Tlama Core! 🚀
 
+hola
+
 Welcome to the official documentation for **Tlama Core**, the heart of our project to build **scalable**, **efficient**, and **optimized** AI models for training and inference on **GPUs**. Here, you’ll find everything you need to understand, use, and contribute to Tlama Core, from installation guides to advanced technical details.
 
 ### What is tlama-core? 🤔
