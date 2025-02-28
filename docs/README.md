@@ -1,4 +1,4 @@
----
+<!-- ---
 icon: hand-wave
 cover: https://gitbookio.github.io/onboarding-template-images/header.png
 coverY: 0
@@ -16,7 +16,7 @@ layout:
     visible: true
   pagination:
     visible: true
----
+--- -->
 
 # Welcome to Tlama Core! 🚀
 
