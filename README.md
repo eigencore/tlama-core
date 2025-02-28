@@ -26,11 +26,11 @@ We’re targeting key optimizations to make Tlama models faster and more scalabl
 
 ## **Roadmap 📅**
 
-Join our journey to build the future of AI! Track our progress and contribute via our [Roadmap Project Board](https://github.com/your-username/tlama-core/projects/1) and [Issues](https://github.com/your-username/tlama-core/issues).
+Join our journey to build the future of AI! Track our progress and contribute via our [Roadmap Project Board](https://github.com/orgs/eigencore/projects/1) and [Issues](https://github.com/eigencore/tlama-core/issues).
 
 | Phases   | Focus                 | Key Goals                            | Status            |
 |-----------|-----------------------|--------------------------------------|-------------------|
-| 1   | Bases                 | Repo structure, docs, Migrate Tlama-124M   | [In Progress](#1) |
+| 1   | Bases                 | Repo structure, docs, Migrate Tlama-124M   | [In Progress](https://github.com/orgs/eigencore/projects/1) |
 | 2   | Foundations           | CUDA kernels, mixed precision, docs  | Pending           |
 | 3   | Scalability           | Multi-GPU, profiler, Tlama-500M      | Pending           |
 | 4   | Innovation/Robotics   | Optimized attention, RL, simulation  | Pending           |
