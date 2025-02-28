@@ -136,7 +136,7 @@ You can explore more on the [Hugging Face page](https://huggingface.co/eigencore
 
 We welcome contributions from the community to help us improve Tlama Core and make it even more powerful. Whether you’re an AI enthusiast, researcher, or developer, your contributions can help shape the future of AI models.
 
-To get started, please read our [**Contribution Guidelines**](dsf) and follow the steps outlined there. We appreciate your interest in contributing to Tlama Core and look forward to your valuable input!
+To get started, please read our [**Contribution Guidelines**](https://eigen-core.gitbook.io/tlama-core-docs/contributing/how-to-contribute) and follow the steps outlined there. We appreciate your interest in contributing to Tlama Core and look forward to your valuable input!
 
 
 ## **Our Vision 🌍**
