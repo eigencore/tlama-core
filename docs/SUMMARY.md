@@ -4,21 +4,15 @@
 
 ## Getting Started
 
+* [Installation](getting-started/installation.md)
 * [Quickstart](getting-started/quickstart.md)
-* [Publish your docs](getting-started/publish-your-docs.md)
+<!-- * [Configuration](getting-started/configuration.md) -->
 
 ## Contributing
 
-* [How to contribute](contrubuting/how-to-contribute.md)
-* [Style guide](contrubuting/style-guide.md)
-* [Pull request template](contrubuting/pull-request-template.md)
+* [How to contribute](contributing/how-to-contribute.md)
+* [Style guide](contributing/style-guide.md)
+* [Pull request template](contributing/pull-request-template.md)
 
 
-## Basics
 
-* [Editor](basics/editor.md)
-* [Markdown](basics/markdown.md)
-* [Images & media](basics/images-and-media.md)
-* [Interactive blocks](basics/interactive-blocks.md)
-* [OpenAPI](basics/openapi.md)
-* [Integrations](basics/integrations.md)
