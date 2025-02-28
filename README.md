@@ -134,16 +134,13 @@ You can explore more on the [Hugging Face page](https://huggingface.co/eigencore
 
 ## **How to Contribute 🌟**
 
-Collaboration is the key to success! The more people involved, the faster we’ll accelerate the progress of Tlama Core.
+We welcome contributions from the community to help us improve Tlama Core and make it even more powerful. Whether you’re an AI enthusiast, researcher, or developer, your contributions can help shape the future of AI models.
 
-Here’s how you can contribute:
-1. **Fork the repository** and clone it to your local machine.
-2. **Dive into the code** and see where you can make an impact.
-3. **Submit a pull request** with a clear description of your changes.
-4. Join our **[Discord Channel](https://discord.gg/eXyva8uR)** to discuss ideas, ask questions, and share your progress.
+To get started, please read our [**Contribution Guidelines**](dsf) and follow the steps outlined there. We appreciate your interest in contributing to Tlama Core and look forward to your valuable input!
 
-For more details or to keep up with the project, check out our website: [Eigen Core](https://www.eigencore.org).
 
 ## **Our Vision 🌍**
 
 At Tlama Core, our mission is simple: **build scalable, efficient, and high-performance AI models**. By optimizing these models for various hardware, we’re empowering researchers and developers to train larger models with **less resource overhead** and **faster deployment times**.
+
+For more details or to keep up with the project, check out our website: [Eigen Core](https://www.eigencore.org).

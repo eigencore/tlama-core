@@ -7,6 +7,13 @@
 * [Quickstart](getting-started/quickstart.md)
 * [Publish your docs](getting-started/publish-your-docs.md)
 
+## Contributing
+
+* [How to contribute](contributing/how-to-contribute.md)
+* [Style guide](contributing/style-guide.md)
+* [Pull request template](contributing/pull-request-template.md)
+
+
 ## Basics
 
 * [Editor](basics/editor.md)
