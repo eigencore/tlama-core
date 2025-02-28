@@ -10,7 +10,7 @@ def test_matmul(N):
     B = torch.randn(N, N, device='cuda')
 
     # Prueba con tu implementación CUDA
-    C_cuda = matmul_cuda.matmul(A, B)
+    C_cuda = torch.matmul(A, B)
 
 
 # Ejecutar la prueba para diferentes tamaños de matriz
