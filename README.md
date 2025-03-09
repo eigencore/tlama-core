@@ -1,4 +1,3 @@
-
 # **Tlama Core** 🚀
 
 Welcome to **Tlama Core**, the foundational repository for the **Tlama models**! This is the heart of our mission to create scalable, efficient, and cutting-edge AI models optimized for **training** and **inference** on **GPUs**. Whether you’re an **AI researcher**, **developer**, or **GPU enthusiast**, this repository is your playground to push the limits of performance, scalability, and innovation.
