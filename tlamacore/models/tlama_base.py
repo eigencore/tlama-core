@@ -97,3 +97,6 @@ class RMSNorm(torch.nn.Module):
         """
         output = self._norm(x.float()).type_as(x)
         return output * self.weight
+    
+def compute_freqs_cis(dim: int, end: int, theta: float = 10000.0):
+    freqs = 1.0 / (theta ** (torch.arange(0, dim, 2)[: (dim // 2)].float() / dim))
