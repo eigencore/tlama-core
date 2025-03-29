@@ -12,6 +12,10 @@ from tlamacore.utils import Version, _get_dtype
 from transformers import __version__ as transformers_version
 from triton import __version__ as triton_version
 from xformers import __version__ as xformers_version
+from rich.console import Console
+from rich.text import Text
+
+console = Console()
 
 # Current module version
 __version__ = "0.0.1"
@@ -154,28 +158,30 @@ def init_setup(
         model_patcher (str): Name of the model patcher.
     """
     if trust_remote_code and fast_inference:
+        console.print("[bold red]Tlama-Core: ERROR! Fast inference is not supported with trust_remote_code=True[/bold red]")
         raise NotImplementedError("Tlama-Core: Fast inference is not supported with trust_remote_code=True")
-    
+
     if trust_remote_code:
-        print("Tlama-Core: WARNING! trust_remote_code=True. Are you sure you want to execute remote code?")
-    
+        console.print("[bold yellow]Tlama-Core: WARNING! trust_remote_code=True. Are you sure you want to execute remote code?[/bold yellow]")
+
     if token is None:
-        raise ValueError("Tlama-Core: token is required for loading the model, please provide a token."
-                         "You can get a token from Huggingface's model hub."
-                         "For more information, please visit: https://huggingface.co/docs/hub/security-tokens")  
+        console.print("[bold red]Tlama-Core: ERROR! token is required for loading the model.[/bold red]")
+        raise ValueError("Tlama-Core: token is required for loading the model, please provide a token. "
+                         "You can get a token from Huggingface's model hub. "
+                         "For more information, please visit: https://huggingface.co/docs/hub/security-tokens")    
         
     gpu_specs, max_memory, SUPPORTS_BFLOAT16, HAS_FLASH_ATTENTION, HAS_FLASH_ATTENTION_SOFTCAPPING = _get_gpu_specs()
     if dtype is None:
-        logger.warning_once("Tlama-Core: dtype is not provided. We will use the default dtype: bfloat16 if available, else float16.")
+        console.print("[bold cyan]Tlama-Core: INFO: dtype is not provided. Using bfloat16 if available, else float16.[/bold cyan]")
         dtype = torch.float16 if not SUPPORTS_BFLOAT16 else torch.bfloat16
     elif dtype == torch.bfloat16 and not SUPPORTS_BFLOAT16:
-        logger.warning_once("Device does not support bfloat16. Will change to float16.")
+        console.print("[bold yellow]Device does not support bfloat16. Switching to float16.[/bold yellow]")
         dtype = torch.float16
-    
+        
     assert(dtype == torch.float16 or dtype == torch.bfloat16 or dtype == torch.float32) 
         
     if device_map is None:
-        print("Tlama-Core: WARNING! device_map is not provided. We will use the default device: cuda if available, else cpu.")
+        console.print("[bold yellow]Tlama-Core: WARNING! device_map is not provided. Using CUDA if available, else CPU.[/bold yellow]")
         
     from importlib.metadata import version as importlib_version
     try:    vllm_version = f" vLLM: {importlib_version('vllm')}."
