@@ -32,3 +32,8 @@ class TlamaConfig:
         self.max_seq_len = max_seq_len
         self.use_parallel = use_parallel
         self.kv_cache = kv_cache
+        
+        
+
+
+
