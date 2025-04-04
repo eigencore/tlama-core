@@ -14,6 +14,10 @@
 * [Style guide](contributing/style-guide.md)
 * [Pull request template](contributing/pull-request-template.md)
 
+## API Reference
+
+### Training
+* [Schedulers](api/training/schedulers.md)
 
 
 
