@@ -4,6 +4,7 @@ from tlamacore.training.trainer import Trainer
 
 from tlamacore.models.tlama_base import Transformer, TlamaConfig
 
+
 config = TlamaConfig(
     d_model=512,
     n_layers= 8,

@@ -61,6 +61,8 @@ class TlamaConfig:
     use_parallel: bool = True
     
     kv_cache: bool = True
+    
+    weight_init: Tuple[float] = (0.02, 0.0) # (std, mean)
 
     
 
@@ -569,6 +571,8 @@ class Transformer(nn.Module):
         self.config = config
         self.vocab_size = config.vocab_size
         self.n_layers = config.n_layers
+        self.std = config.weight_init[0]
+        self.mean = config.weight_init[1]
          
         self.layers = nn.ModuleList()
         for layer_id in range(self.n_layers):
@@ -612,7 +616,22 @@ class Transformer(nn.Module):
             )
         )
         
+        self.apply(self._init_weights)
         
+    
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            std = self.std
+            mean = self.mean
+            if hasattr(module, 'TLAMA124M_SCALE_INIT'):
+                std *= (2 * self.config.n_layer) ** -0.5
+            torch.nn.init.normal_(module.weight, mean=mean, std=std)
+            if module.bias is not None:
+                torch.nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Embedding):
+            torch.nn.init.normal_(module.weight, mean=mean, std=self.std)
+    
+    
     def forward(
         self,
         tokens: torch.Tensor,
