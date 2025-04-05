@@ -2,7 +2,8 @@ from tlamacore.data.dataloader import DataLoaderLite
 from tlamacore.training.scheduler import get_lr_scheduler
 from tlamacore.training.trainer import Trainer
 
-from tlamacore.models.tlama_base import Transformer, TlamaConfig
+from tlamacore.models.tlama_base import Transformer
+from tlamacore.models.config import TlamaConfig
 
 config = TlamaConfig(
     d_model=512,
