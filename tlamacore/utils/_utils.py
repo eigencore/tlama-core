@@ -142,7 +142,7 @@ def print_first_message(dtype=None, device_map=None, model_patcher="Trainer"):
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     # Create color variables for rich console
-    title_color = "grey"  # Cambiado de magenta a un azul más serio
+    title_color = "grey"
     header_color = "bright_cyan"
     value_color = "bright_green"
     warning_color = "bright_yellow"
