@@ -32,7 +32,7 @@ train_data_loader = DataLoaderLite(
     num_process=1,
     split='train',
     shuffle=True,
-    verbose=True
+    verbose=False,
 )
 
 val_data_loader = DataLoaderLite(
@@ -43,7 +43,7 @@ val_data_loader = DataLoaderLite(
     num_process=1,
     split='val',
     shuffle=False,
-    verbose=True
+    verbose=False
 )
 
 scheduler = get_lr_scheduler(
@@ -52,7 +52,7 @@ scheduler = get_lr_scheduler(
     max_steps=19073,
     warmup_steps=715,
     decay_type='cosine',
-    verbose=True,
+    verbose=False,
 )
 
 trainer = Trainer(

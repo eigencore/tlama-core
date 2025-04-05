@@ -87,7 +87,7 @@ class DataLoaderLite:
         # Load the data from the specified directory
         self._load_data()
         if verbose and len(self.shards) > 0:
-            console.print(f"[green]Found {len(self.shards)} shards for split '{self.split}'[/green]")
+            console.print(f"[green]Tlama-Core: INFO: Found {len(self.shards)} shards for split '{self.split}'[/green]")
         self.reset()
         
     def _load_data(self):

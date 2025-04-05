@@ -1,6 +1,7 @@
-from ._utils import Version, _get_dtype
+from ._utils import Version, get_gpu_specs, print_first_message
 
 __all__ = [
     "Version",
-    "_get_dtype",
+    "get_gpu_specs",
+    "print_first_message"
 ]
