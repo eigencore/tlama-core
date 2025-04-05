@@ -411,7 +411,7 @@ class Trainer:
             
             except Exception as e:
                 console.print(f"[red]Tlama-Core: ERROR in training step: {e}[/red]")
-                continue
+                break
         
         # Apply gradient clipping
         try:

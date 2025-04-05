@@ -617,9 +617,9 @@ class Transformer(nn.Module):
         return output, loss
     
     def _init_weights(self, module):
+        std = self.std
+        mean = self.mean
         if isinstance(module, nn.Linear):
-            std = self.std
-            mean = self.mean
             if hasattr(module, 'TLAMA124M_SCALE_INIT'):
                 std = (2 * self.config.n_layer) * -0.5
             torch.nn.init.normal_(module.weight, mean=mean, std=std)
