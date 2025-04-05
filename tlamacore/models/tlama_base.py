@@ -16,6 +16,7 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from tlamacore.models.config import TlamaConfig
 from dataclasses import dataclass
 from typing import Optional, Tuple
 # import fairscale.nn.model_parallel.initialize as fs_init
@@ -24,46 +25,6 @@ from typing import Optional, Tuple
 #     RowParallelLinear,
 #     VocabParallelEmbedding,
 # )
-
-
-@dataclass
-class TlamaConfig:
-    """
-    Configuration class for the Tlama model.
-    
-    Defines model hyperparameters such as the number of layers, dimensions, and other key settings.
-    
-    Attributes:
-        d_model (int): Dimensionality of the model. Default is 4096.
-        n_layers (int): Number of transformer layers. Default is 32.
-        n_kv_heads (Optional[int]): Number of key-value heads for attention. Default is None (follows n_heads).
-        vocab_size (int): Size of the vocabulary. Default is -1 (must be set manually).
-        multiple_of (int): Ensures the hidden layer size in SwiGLU is a multiple of this value. Default is 256.
-        ffn_dim_multiplier (Optional[float]): Multiplier for feed-forward network dimension. Default is None.
-        norm_eps (float): Epsilon value for normalization layers. Default is 1e-5.
-        rope_theta (float): Theta value for RoPE positional embeddings. Default is 500000.
-        max_batch_size (int): Maximum batch size. Default is 32.
-        max_seq_len (int): Maximum sequence length. Default is 2048.
-    """
-    d_model: int = 4096
-    n_layers: int = 32
-    n_heads: int = 32
-    n_kv_heads: Optional[int] = None
-    vocab_size: int = -1
-    multiple_of: int = 256  # Ensures hidden layer size in SwiGLU is a multiple of this value
-    ffn_dim_multiplier: Optional[float] = None
-    norm_eps: float = 1e-5
-    rope_theta: float = 500000
-    
-    max_batch_size: int = 32
-    max_seq_len: int = 2048
-    
-    use_parallel: bool = True
-    
-    kv_cache: bool = True
-
-    
-
 
 class RMSNorm(torch.nn.Module):
     """
@@ -168,7 +129,6 @@ def reshape_for_broadcast(freqs_cis: torch.Tensor, x: torch.Tensor):
     shape = [d if i == 1 or i == ndim - 1 else 1 for i, d in enumerate(x.shape)]
     return freqs_cis.view(*shape)
 
-
 def apply_rope(
     xq: torch.Tensor,
     xk: torch.Tensor,
@@ -208,7 +168,6 @@ def repeat_kv(kv: torch.Tensor, n_rep: int) -> torch.Tensor:
         .expand(bsz, seq_len, n_kv_heads, n_rep, head_dim)
         .reshape(bsz, seq_len, n_kv_heads * n_rep, head_dim)
     )
-
 
 class Attention(nn.Module):
     """
@@ -401,8 +360,7 @@ class Attention(nn.Module):
         output = output.transpose(1,2).contiguous().view(bsz, seq_len, -1)
         
         return self.Wo(output)
-    
-    
+     
 class FeedForward(nn.Module):
     """
     FeedForward network for the Tlama model.
@@ -569,6 +527,8 @@ class Transformer(nn.Module):
         self.config = config
         self.vocab_size = config.vocab_size
         self.n_layers = config.n_layers
+        self.std = config.weight_init[0]
+        self.mean = config.weight_init[1]
          
         self.layers = nn.ModuleList()
         for layer_id in range(self.n_layers):
@@ -611,6 +571,8 @@ class Transformer(nn.Module):
                 config.rope_theta
             )
         )
+    
+        self.apply(self._init_weights)
         
         
     def forward(
@@ -653,6 +615,18 @@ class Transformer(nn.Module):
         if targets is not None:
             loss = F.cross_entropy(output.view(-1, output.size(-1)), targets.view(-1))
         return output, loss
+    
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            std = self.std
+            mean = self.mean
+            if hasattr(module, 'TLAMA124M_SCALE_INIT'):
+                std = (2 * self.config.n_layer) * -0.5
+            torch.nn.init.normal_(module.weight, mean=mean, std=std)
+            if module.bias is not None:
+                torch.nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Embedding):
+            torch.nn.init.normal_(module.weight, mean=mean, std=self.std)
     
     def configure_optimizers(self, weight_decay, learning_rate, device_type, master_process=True):
         param_dict = {pn: p for pn, p in self.named_parameters() if p.requires_grad}
