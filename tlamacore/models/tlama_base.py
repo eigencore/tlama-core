@@ -26,6 +26,9 @@ from typing import Optional, Tuple
 #     VocabParallelEmbedding,
 # )
 
+def count_parameters(model): # TODO: Move this to a better place
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
 class RMSNorm(torch.nn.Module):
     """
     Root Mean Square Layer Normalization (RMSNorm)
@@ -529,6 +532,7 @@ class Transformer(nn.Module):
         self.n_layers = config.n_layers
         self.std = config.weight_init[0]
         self.mean = config.weight_init[1]
+        self.num_parameters = count_parameters(self)
          
         self.layers = nn.ModuleList()
         for layer_id in range(self.n_layers):

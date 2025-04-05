@@ -5,6 +5,7 @@ import torch
 import numpy as np
 from typing import Dict, Any, Optional, List, Callable, Union, Tuple
 from rich.console import Console
+from tlamacore.utils import print_first_message
 
 console = Console()
 
@@ -97,6 +98,12 @@ class Trainer:
         else:
             self.device = torch.device("cpu")
             self.device_type = "cpu"
+            
+        print_first_message(
+            dtype=torch.float32,
+            device_map=self.device_type,
+            model_patcher="Trainer"
+        )
         
         # Set seed for reproducibility
         self._set_seed(seed)
@@ -180,7 +187,7 @@ class Trainer:
         for callback in self.callbacks:
             if hasattr(callback, 'on_init_end'):
                 callback.on_init_end(self)
-    
+                
     def _set_seed(self, seed: int):
         """
         Set the random seed for reproducibility.
