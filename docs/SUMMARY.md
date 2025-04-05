@@ -31,7 +31,7 @@
 
 ## Training
 
-<!-- * [Trainer](api/training/trainer.md) -->
+* [Trainer](api/training/trainer.md)
 * [Schedulers](api/training/schedulers.md)
 <!-- * [Optimizers](api/training/optimizers.md)
 * [Checkpointing](api/training/checkpoint.md)
