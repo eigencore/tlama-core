@@ -8,12 +8,12 @@
 * [Quickstart](getting-started/quickstart.md)
 * [Configuration](getting-started/configuration.md)
 
-<!-- ## Models
+## Models
 
-* [Overview](api/models/overview.md)
-* [Transformer](api/models/transformer.md)
-* [LLaMA](api/models/llama.md)
-* [Mistral](api/models/mistral.md)
+<!-- * [Overview](api/models/overview.md)
+* [Transformer](api/models/transformer.md) -->
+* [Tlama](api/models/tlama_base.md)
+<!-- * [Mistral](api/models/mistral.md)
 * [Configuration](api/models/config.md) -->
 <!-- 
 ## Tokenizers
@@ -22,10 +22,10 @@
 * [BPE](api/tokenizers/bpe.md)
 * [SentencePiece](api/tokenizers/sentencepiece.md) -->
 
-<!-- ## Data Processing
+## Data Processing
 
 * [DataLoader](api/data/dataloader.md)
-* [Dataset](api/data/dataset.md)
+<!-- * [Dataset](api/data/dataset.md)
 * [Preprocessing](api/data/preprocessing.md)
 * [Augmentation](api/data/augmentation.md) -->
 
