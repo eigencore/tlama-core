@@ -33,6 +33,12 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+edu_fineweb10B/
+
+logs/
+log/
+checkpoints/
+
 project.txt
 
 # PyInstaller

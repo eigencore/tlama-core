@@ -48,12 +48,15 @@ class DataLoaderLite:
         verbose (bool, optional): Whether to print verbose output. Default: True
     """
     
-    VALID_SPLITS = ['train', 'valid', 'test']
+    VALID_SPLITS = ['train', 'val']
     
     def __init__(self, data_dir, batch_size, seq_len, process_rank=0, num_process=1, 
                  split='train', shuffle=False, verbose=True):
+        
+        self.data_dir = os.path.abspath(data_dir)
+
         # Validate input parameters
-        if not os.path.exists(data_dir) or not os.path.isdir(data_dir):
+        if not os.path.exists(self.data_dir) or not os.path.isdir(self.data_dir):
             raise ValueError(f"Data directory does not exist or is not a directory: {data_dir}")
         if batch_size <= 0:
             raise ValueError(f"Batch size must be positive, got {batch_size}")
@@ -205,6 +208,11 @@ class DataLoaderLite:
         
         # Update position for next batch
         self.current_pos += _bsz * _seq_len * self.num_process
+        
+        if self.current_pos + (_bsz * _seq_len * self.num_process + 1) > len(self.tokens):
+            self.current_shard = (self.current_shard + 1) % len(self.shards)
+            self.tokens = load_tokens_from_npy(self.shards[self.current_shard])
+            self.current_pos = _bsz * _seq_len * self.process_rank
         
         return x, y
     
