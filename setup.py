@@ -4,12 +4,11 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
     
-with open("requirements.txt") as f:
-    requirements = f.read().splitlines()
+__version__ = "0.0.3" 
 
 setup(
     name="tlama-core",
-    version="0.0.1",
+    version=__version__,  
     author="Eigen Core",  
     author_email="main@eigencore.org",  
     description="Core library for training Tlama models.",
@@ -21,7 +20,7 @@ setup(
         "Documentation": "https://eigen-core.gitbook.io/tlama-core-docs",
         "Source Code": "https://github.com/eigencore/tlama-core",
     },
-    packages=find_packages(include=["tlama_core", "tlama_core.*"]),  # Specify main packages
+    packages=find_packages(include=["tlamacore", "tlamacore.*"]),  # Specify main packages
     classifiers=[
         "Development Status :: 3 - Alpha",  # Indicates it's an initial version
         "Intended Audience :: Developers",
@@ -35,7 +34,21 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",  # Minimum compatible Python version
-    install_requires=requirements,  # Install required packages
+    install_requires=[
+        "torch>=2.0.0",
+        "transformers>=4.30.0",
+        "numpy>=1.20.0",
+        "einops>=0.6.0",
+        "flash-attn>=2.0.0",
+        "xformers>=0.0.20",
+        "huggingface-hub>=0.16.0",
+        "tqdm>=4.65.0",
+        "matplotlib>=3.7.0",
+        "Pillow>=9.0.0",
+        "safetensors>=0.3.0",
+        "triton>=2.0.0",
+        "rich==13.9.4"
+    ],
     # extras_require={ # TODO: Add optional dependencies
     #     "dev": [
     #         "pytest>=6.0",

@@ -10,12 +10,17 @@ from triton import __version__ as triton_version
 from xformers import __version__ as xformers_version
 
 
-# Ruta al archivo version.txt
-version_file = os.path.join(os.path.dirname(__file__), "../../version.txt")
-
-# Leer la versión desde el archivo
-with open(version_file, "r") as f:
-    __version__ = f.read().strip()
+try:
+    from importlib.metadata import version as importlib_version
+    __version__ = importlib_version("tlama-core")
+except (ImportError, ModuleNotFoundError):
+    try:
+        # Fallback para Python < 3.8
+        import pkg_resources
+        __version__ = pkg_resources.get_distribution("tlama-core").version
+    except:
+        # Si todo falla, usa una versión por defecto
+        __version__ = "0.0.3"
 
 console = Console()
 
