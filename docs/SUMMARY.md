@@ -95,3 +95,6 @@
 * [How to contribute](contributing/how-to-contribute.md)
 * [Style guide](contributing/style-guide.md)
 * [Pull request template](contributing/pull-request-template.md)
+
+## Tutorials
+* [Training a Tlama model](tutorials/training_tlama.md)
